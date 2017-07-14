@@ -14,7 +14,7 @@ public class skillContainer : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        createSkills();
+        CreateSkills();
         globalData.theSkillContainer = gameObject.GetComponent<skillContainer>();
 	}
 	
@@ -23,19 +23,29 @@ public class skillContainer : MonoBehaviour {
 		
 	}
 
-    void createSkills()
+    void CreateSkills()
     {
         globalData.allSkills.Add(new skill("SlowField", skill.skillType.Place, 7, 5, 30, 25, 20,"Slow Field"));
         globalData.allSkills.Add(new skill("Heal", skill.skillType.Buff, 0, 10, 60, 5, 25));
         globalData.allSkills.Add(new skill("Nuke", skill.skillType.Shoot, 10, .5f, 30, 1.5f, 50));
         globalData.allSkills.Add(new skill("Buff", skill.skillType.Buff, 0, 10, 20, 100, 25));
-        globalData.allSkills.Add(new skill("Test2", skill.skillType.Place, 1, 1, 1, 1, 1));
-        globalData.allSkills.Add(new skill("Test3", skill.skillType.Place, 1, 1, 1, 1, 1));
+        globalData.allSkills.Add(new skill("Test", skill.skillType.Passive, 1, 1, 1, 1, 1, "Test1"));
+        globalData.allSkills.Add(new skill("Test", skill.skillType.Passive, 1, 1, 1, 1, 1, "Test2"));
+        globalData.allSkills.Add(new skill("Test", skill.skillType.Passive, 1, 1, 1, 1, 1, "Test3"));
+        globalData.allSkills.Add(new skill("Test", skill.skillType.Passive, 1, 1, 1, 1, 1, "Test4"));
 
-        SetDescriptionDetails("SlowField");
+
+
+        /*SetDescriptionDetails("SlowField");
         SetDescriptionDetails("Heal");
         SetDescriptionDetails("Nuke");
-        SetDescriptionDetails("Buff");
+        SetDescriptionDetails("Buff");*/
+
+        // set ALL skill descriptions
+        foreach(skill s in globalData.allSkills)
+        {
+            SetDescriptionDetails(s.skillName);
+        }
     }
     void SetDescriptionDetails(string s)
     {
@@ -60,6 +70,11 @@ public class skillContainer : MonoBehaviour {
             case "Buff":
                 {
                     setSkillDesc(self, "Increase damage by " + self.power + "% for " + self.duration + " seconds.");
+                    break;
+                }
+            case "*test":
+                {
+                    setSkillDesc(self, "Test test test");
                     break;
                 }
             default:

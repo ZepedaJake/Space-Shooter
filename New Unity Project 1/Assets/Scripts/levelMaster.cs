@@ -522,16 +522,16 @@ public class levelMaster : MonoBehaviour {
         GameObject top = GameObject.FindWithTag("top");
         GameObject bottom = GameObject.FindWithTag("bottom");
 
-        left.transform.position = new Vector3(left.transform.position.x - 45, left.transform.position.y, left.transform.position.z);
-        right.transform.position = new Vector3(right.transform.position.x + 45, right.transform.position.y,right.transform.position.z);
-        top.transform.position = new Vector3(top.transform.position.x,top.transform.position.y,top.transform.position.z + 20);
-        bottom.transform.position = new Vector3(bottom.transform.position.x,bottom.transform.position.y, bottom.transform.position.z-20);
-        gameObject.transform.position = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y + 35, gameObject.transform.position.z);
+        left.transform.position = new Vector3(left.transform.position.x - 9, left.transform.position.y, left.transform.position.z);
+        right.transform.position = new Vector3(right.transform.position.x + 9, right.transform.position.y,right.transform.position.z);
+        top.transform.position = new Vector3(top.transform.position.x,top.transform.position.y,top.transform.position.z + 4.5f);
+        bottom.transform.position = new Vector3(bottom.transform.position.x,bottom.transform.position.y, bottom.transform.position.z-4.5f);
+        gameObject.transform.position = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y + 8, gameObject.transform.position.z);
 
-        left.transform.localScale += new Vector3(30, 0, 40);
-        right.transform.localScale += new Vector3(30, 0, 40);
-        top.transform.localScale += new Vector3(30, 0, 0);
-        bottom.transform.localScale += new Vector3(30, 0, 0);
+        left.transform.localScale += new Vector3(6, 0, 8);
+        right.transform.localScale += new Vector3(6, 0, 8);
+        top.transform.localScale += new Vector3(10, 0, 0);
+        bottom.transform.localScale += new Vector3(10, 0, 0);
 
         globalData.leftEdge = left.transform.position.x + (left.transform.localScale.x / 2) + .5f;
         globalData.rightEdge = right.transform.position.x - (right.transform.localScale.x / 2) - .5f;
