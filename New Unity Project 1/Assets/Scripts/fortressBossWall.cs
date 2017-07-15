@@ -17,7 +17,7 @@ public class fortressBossWall : MonoBehaviour {
     void Start()
     {
         retractedPosition = transform.localPosition;
-        extendedPosition = retractedPosition + (transform.forward * -1.5f);
+        extendedPosition = retractedPosition + (transform.forward * 1.5f);
         moveAwayIn = Random.Range(10, 15);
     }
 
@@ -49,4 +49,15 @@ public class fortressBossWall : MonoBehaviour {
         }
        
     }
+
+    void OnTriggerEnter(Collider o)
+    {
+        if(o.tag == "bullet")
+        {
+            Destroy(o.gameObject);
+
+        }
+    }
+
+
 }

@@ -58,7 +58,7 @@ public class fortressBoss : enemyBase {
         }
 
         
-        /*if (!dir)
+        if (!dir)
         {
             gameObject.transform.Translate(Vector3.right * speed * Time.deltaTime * Time.timeScale);
 
@@ -67,7 +67,7 @@ public class fortressBoss : enemyBase {
         {
             gameObject.transform.Translate(Vector3.left * speed * Time.deltaTime * Time.timeScale);
 
-        }*/
+        }
         //on death, expand play area, and allow next boss countdown to begin.
         if (health <= 0)
         {
