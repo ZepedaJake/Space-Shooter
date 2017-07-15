@@ -65,6 +65,7 @@ public class basicBoss : enemyBase {
         {
             Destroy(gameObject);
             theLevelMaster.spawnBoss = true;
+            theLevelMaster.BossProgression();
             theLevelMaster.ExpandSpace();
         }
         

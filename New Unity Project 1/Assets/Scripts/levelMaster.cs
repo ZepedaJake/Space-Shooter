@@ -188,7 +188,7 @@ public class levelMaster : MonoBehaviour {
             spawnBoss = false;
             bossSpawnCounter = 0;
             //instantiate a new boss each time
-            Instantiate(bosses[bossCounter], new Vector3(0, 0, globalData.topEdge - 5), new Quaternion(0, 0, 0, 0));
+            Instantiate(bosses[bossCounter], new Vector3(0, -1, globalData.topEdge - 5), new Quaternion(0, 0, 0, 0));
         }
         /*if(kills == 100 && spawnBoss)
         {
@@ -523,7 +523,13 @@ public class levelMaster : MonoBehaviour {
         }
         catch { }
     }
-
+    public void BossProgression()
+    {
+        if (bossCounter < bosses.Length - 1)
+            bossCounter++;
+        else
+            bossCounter = 0;
+    }
     public void ExpandSpace()
     {
         GameObject left = GameObject.FindWithTag("leftEdge");

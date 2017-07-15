@@ -2,20 +2,23 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class fortressBoss : enemyBase {
+public class ramBoss : enemyBase {
 
     public GameObject missile;
-    public GameObject center;
-    public float fireTimer = 5;
+    public GameObject selfBody;
+    public float fireTimer = 7;
+    public bool recharging = false;
     public bool dir;
+    public float rechargeTimer = 3;
+    public Material bossBodyMaterial;
 
-    public fortressBoss()
+    public ramBoss()
     {
-        health = 4000;
-        exp = 500;
-        money = 850;
-        enemyDamage = 20;
-        speed = 15;
+        health = 2000;
+        exp = 800;
+        money = 800;
+        enemyDamage = 55;
+        speed = 25;
         maxSpeed = 10;
         spawnTimer = 9999;
         minSpawnTime = 9999;
@@ -40,14 +43,16 @@ public class fortressBoss : enemyBase {
         }
 
         speedTemp = speed;
+        fireTimer = Random.Range(12, 17);
+
+        bossBodyMaterial.color = new Color(75 / 255f, 0, 0, 1);
     }
 
     // Update is called once per frame
     void Update()
     {
-        center.transform.Rotate(Vector3.up);
         Fire();
-        
+       //move left and right
         if (gameObject.transform.position.x <= globalData.leftEdge)
         {
             dir = false;
@@ -56,8 +61,6 @@ public class fortressBoss : enemyBase {
         {
             dir = true;
         }
-
-        
         if (!dir)
         {
             gameObject.transform.Translate(Vector3.right * speed * Time.deltaTime * Time.timeScale);
@@ -77,6 +80,29 @@ public class fortressBoss : enemyBase {
             theLevelMaster.ExpandSpace();
         }
 
+        //after ramming. resummon after x seconds
+        if(recharging)
+        {
+            //after 3 seconds begin reappearing
+            
+            rechargeTimer -= Time.deltaTime * Time.timeScale;
+            if(rechargeTimer<=0)
+            {
+                //fade in
+                selfBody.SetActive(true);
+                bossBodyMaterial.color += new Color(0, 0, 0, .01f);
+            }
+
+            //after alpha is full, start moving
+            if(bossBodyMaterial.color.a >= 1)
+            {
+                recharging = false;
+                speed = 25;
+            }
+            
+            
+        }
+
     }
 
     void Fire()
@@ -84,9 +110,17 @@ public class fortressBoss : enemyBase {
         fireTimer -= Time.deltaTime * Time.timeScale;
         if (fireTimer <= 0)
         {
-            GameObject missileTemp = (GameObject)Instantiate(missile, gameObject.transform.position, new Quaternion(0, 1, -1, 0));
+            //make body invisible, then unable to be hit
+            bossBodyMaterial.color = new Color(75/255f, 0, 0, 0);
+            selfBody.SetActive(false);
+            //fire missile body
+            GameObject missileTemp = (GameObject)Instantiate(missile, gameObject.transform.position, new Quaternion(0, 0, 0, 0));
             missileTemp.SendMessage("SetDamage", enemyDamage);
-            fireTimer = 5;
+            fireTimer = Random.Range(12, 17);
+            speed = 0;
+            //prepare to reappear
+            rechargeTimer = 3;
+            recharging = true;
         }
-    }  
+    }
 }
