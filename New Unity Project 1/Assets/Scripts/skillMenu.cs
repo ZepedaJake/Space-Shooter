@@ -73,7 +73,7 @@ public class skillMenu : MonoBehaviour {
                     k.basePower += 5;
                     k.baseDuration += 2;
                     k.baseSize += 1;
-                    k.baseCost += 5;
+                    k.baseCost -= 1;
                     break;
                 case "Heal":
                     k.basePower += 5;
@@ -85,7 +85,13 @@ public class skillMenu : MonoBehaviour {
                     k.basePower += .5f;
                     k.baseCost += 15;
                     k.baseSize += 3;
-                    k.baseCoolDown += 7;
+                    k.baseCoolDown -=2;
+                    break;
+                case "Buff":
+                    k.basePower += 20;
+                    k.baseCost += 5;
+                    k.baseDuration += 5;
+                    
                     break;
                 default:
                     break;

@@ -50,6 +50,8 @@ public class levelMaster : MonoBehaviour {
     public double[] spawnTimes;
     public GameObject[] bosses;
     public bool spawnBoss = true;
+    public int bossSpawnCounter = 0;
+    public int bossCounter = 0;
     
 
     
@@ -180,12 +182,19 @@ public class levelMaster : MonoBehaviour {
                 }
             }
         }
-        
-        if(kills == 100 && spawnBoss)
+        //every 100 kills spawn a boss
+        if(bossSpawnCounter>=100)
+        {
+            spawnBoss = false;
+            bossSpawnCounter = 0;
+            //instantiate a new boss each time
+            Instantiate(bosses[bossCounter], new Vector3(0, 0, globalData.topEdge - 5), new Quaternion(0, 0, 0, 0));
+        }
+        /*if(kills == 100 && spawnBoss)
         {
             spawnBoss = false;
             Instantiate(bosses[0], new Vector3(0, 0, globalData.topEdge - 5), new Quaternion(0, 0, 0, 0));
-        }
+        }*/
     }
 
     public void EnergyUpdate()

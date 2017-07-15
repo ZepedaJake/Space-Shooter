@@ -89,6 +89,11 @@ public class enemyBase : MonoBehaviour
                 Death();
                 GameObject.FindWithTag("Player").SendMessage("Exp", exp);
                 theLevelMaster.kills += 1;
+                //if a boss is spawnable, add to the spawn kill count down
+                if(theLevelMaster.spawnBoss)
+                {
+                    theLevelMaster.bossSpawnCounter++;
+                }
                 theLevelMaster.money += money;
                 theLevelMaster.UpdateUI();
             }
