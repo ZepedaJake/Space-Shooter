@@ -53,11 +53,11 @@ public class ramBoss : enemyBase {
     {
         Fire();
        //move left and right
-        if (gameObject.transform.position.x <= globalData.leftEdge)
+        if (gameObject.transform.position.x <= globalData.leftEdge+5)
         {
             dir = false;
         }
-        else if (gameObject.transform.position.x >= globalData.rightEdge)
+        else if (gameObject.transform.position.x >= globalData.rightEdge-5)
         {
             dir = true;
         }

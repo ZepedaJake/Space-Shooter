@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ramMissileScript : MonoBehaviour {
+public class voidBossMissile : MonoBehaviour {
 
     public float damage;
     levelMaster theLevelMaster;
     public ParticleSystem smoke;
+    public float lifetime = 7;
 
 
     // Use this for initialization
@@ -19,12 +20,21 @@ public class ramMissileScript : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-        gameObject.transform.Translate(transform.forward * Time.deltaTime * Time.timeScale * -60);
-        /*if (gameObject.transform.position.z > globalData.topEdge)
+        lifetime -= Time.deltaTime * Time.timeScale;
+        //follow player
+        transform.LookAt(globalData.player.transform);
+        transform.position = Vector3.MoveTowards(transform.position,globalData.player.transform.position,Time.timeScale * Time.deltaTime * 8);
+        //transform.Translate(transform.forward * Time.deltaTime * Time.timeScale * -10);
+        if (gameObject.transform.position.z > globalData.topEdge)
         {
             Destroy(gameObject);
-        }*/
+        }
 
+        if(lifetime <=0)
+        {
+            Destroy(gameObject);
+        }
+        
     }
 
     void SetDamage(float d)

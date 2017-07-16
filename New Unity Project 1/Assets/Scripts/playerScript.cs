@@ -74,6 +74,7 @@ public class playerScript : MonoBehaviour {
     // Use this for initialization
     void Start()
     {
+        globalData.player = gameObject;
         rb = gameObject.GetComponent<Rigidbody>();
         theLevelMaster = GameObject.FindWithTag("MainCamera").GetComponent<levelMaster>();
         theShop = shopHolder.GetComponent<shopScript>();
