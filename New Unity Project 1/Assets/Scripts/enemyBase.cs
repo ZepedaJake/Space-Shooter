@@ -141,6 +141,7 @@ public class enemyBase : MonoBehaviour
     {
         try
         {
+            //bosses dont die when hitting player because they have no enemyAudioSource
             enemyAudioSource.Play();
             gameObject.GetComponent<SphereCollider>().enabled = false;
             gameObject.GetComponent<MeshRenderer>().enabled = false;
@@ -150,8 +151,8 @@ public class enemyBase : MonoBehaviour
             {
                 Destroy(gameObject);
             }
-        }
-        catch { }
+       }
+       catch { }
     }
 
     void BulletHit(Collider o)
