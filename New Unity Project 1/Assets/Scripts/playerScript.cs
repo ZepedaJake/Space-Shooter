@@ -238,8 +238,8 @@ public class playerScript : MonoBehaviour {
         critMult = baseCritMult + (float)(str * .03) + (luk * .07f);
         evade = baseEvade + (float)(agi * .1) + (luk * .3f);
         energyDamage = baseEnergyDamage + (eng * 3);
-        maxHealth = baseMaxHealth + (int)((level - 1) * 16.2) + (con * 20);
-        maxEnergy = baseMaxEnergy + (int)((level - 1) * 16.2) + (eng * 20);
+        maxHealth = baseMaxHealth + (int)((level - 1) * 16) + (con * 20);
+        maxEnergy = baseMaxEnergy + (int)((level - 1) * 12) + (eng * 15);
 
         //maxes
         if (drag > 2)

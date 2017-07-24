@@ -7,6 +7,7 @@ public static class globalData{
     public static GameObject mainCanvas = GameObject.FindWithTag("mainCanvas");
     public static GameObject player;
     public static skillContainer theSkillContainer;
+    public static levelMaster theLevelMaster;
     public static float leftEdge;
     public static float rightEdge;
     public static float topEdge;

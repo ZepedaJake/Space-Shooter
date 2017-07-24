@@ -19,6 +19,7 @@ public class MainMenu : MonoBehaviour {
     public GameObject skill2;
     public GameObject skill3;
     public GameObject skill4;
+    public Text startAlertText;
 
     //for random skills button
     int[] randomNums = new int[4];
@@ -52,11 +53,37 @@ public class MainMenu : MonoBehaviour {
 
     public void StartGame()
     {
-        SceneManager.UnloadSceneAsync("Main");
-        SceneManager.LoadScene("Play", LoadSceneMode.Single);
-        globalData.theSkillContainer.playerMaterialColor = playerMaterial.color;
-        globalData.theSkillContainer.playerGlowColor = playerGlowPreview.color;
-        //skillContainer.GivePlayerSkills();
+        //if skills are not blank start game
+        bool doStart = false;
+
+        //check if skillls were chosen
+        for(int x = 0; x<4;x++)
+        {
+            if(globalData.theSkillContainer.chosenSkills[x] != null)
+            {
+                doStart = true;
+            }
+            else
+            {
+                doStart = false;
+                break;
+            }
+
+            
+        }
+
+        if (doStart)
+        {
+            SceneManager.UnloadSceneAsync("Main");
+            SceneManager.LoadScene("Play", LoadSceneMode.Single);
+            globalData.theSkillContainer.playerMaterialColor = playerMaterial.color;
+            globalData.theSkillContainer.playerGlowColor = playerGlowPreview.color;
+            //skillContainer.GivePlayerSkills();
+        }
+        else
+        {
+            startAlertText.text = "Unable to start, one or more skills were not chosen";
+        }
 
     }
 
