@@ -84,11 +84,19 @@ public class playerScript : MonoBehaviour {
         currentEnergy = maxEnergy;
 
         Invoke("SetSkills",.1f);
+        try
+        {
+            globalData.theSerializer.LoadPlayerData();
+        }
+        catch
+        {
 
+        }
         UpdateSkillValues();
         UpdateStats();
         globalData.theSkillContainer.SetPlayerColor();
     }
+
     void SetSkills()
     {
         //playerSkills.Add(globalData.allSkills.Find(x => x.skillName.Contains("SlowField")));

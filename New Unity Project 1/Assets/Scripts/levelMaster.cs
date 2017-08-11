@@ -286,6 +286,10 @@ public class levelMaster : MonoBehaviour {
         skillMenu.SetActive(skillOpen);
     }
 
+    public void Save()
+    {
+        globalData.theSerializer.Save();
+    }        
 
     public void StrUp()
     {

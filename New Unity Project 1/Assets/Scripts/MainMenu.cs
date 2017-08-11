@@ -84,7 +84,12 @@ public class MainMenu : MonoBehaviour {
         {
             startAlertText.text = "Unable to start, one or more skills were not chosen";
         }
+    }
 
+    public void LoadGame()
+    {
+        globalData.theSerializer.LoadSkills();
+        UpdateSelectedSkills();
     }
 
     public void RandomColors()

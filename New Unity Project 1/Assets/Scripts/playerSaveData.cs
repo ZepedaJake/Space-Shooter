@@ -23,11 +23,15 @@ public class playerSaveData
     public int skillPoints;
     public int statPoints;
 
-    //should have a lvl attribute that cna be saved
-    public skill playerSkill1;
-    public skill playerSkill2;
-    public skill playerSkill3;
-    public skill playerSkill4;
+    //should have a lvl attribute that can be saved
+    public string playerSkill1Name;
+    public int playerSkill1Level;
+    public string playerSkill2Name;
+    public int playerSkill2Level;
+    public string playerSkill3Name;
+    public int playerSkill3Level;
+    public string playerSkill4Name;
+    public int playerSkill4Level;
 
     public Color playerColor;
     public Color playerGlowColor;

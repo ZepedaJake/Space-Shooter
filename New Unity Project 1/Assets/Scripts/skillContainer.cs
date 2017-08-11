@@ -7,6 +7,7 @@ public class skillContainer : MonoBehaviour {
     //also holds custom color because this is carried from the main menu
     public GameObject[] skills;
     public skill[] chosenSkills = new skill[4];
+    public int[] loadedSkillLevels = new int[4];
     playerScript player;
 
     public Color playerMaterialColor;
@@ -82,7 +83,6 @@ public class skillContainer : MonoBehaviour {
         }
     }
 
-
     void setSkillDesc(skill s, string description)
     {
 
@@ -104,5 +104,13 @@ public class skillContainer : MonoBehaviour {
     {
         player = GameObject.Find("Player").GetComponent<playerScript>();
         player.GetComponent<Light>().color = playerGlowColor;
+    }
+
+    public void LoadSkill(string name,int num, int level)
+    {
+        skill find = globalData.allSkills.Find(x => x.skillName.Contains(name));
+        
+        chosenSkills[num] = find;
+        loadedSkillLevels[num] = level;
     }
 }

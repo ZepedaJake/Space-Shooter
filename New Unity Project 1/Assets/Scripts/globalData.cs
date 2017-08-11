@@ -12,5 +12,5 @@ public static class globalData{
     public static float rightEdge;
     public static float topEdge;
     public static float bottomEdge;
-
+    public static Serializer theSerializer;
 }
