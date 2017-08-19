@@ -23,7 +23,7 @@ public class levelMaster : MonoBehaviour {
     public GameObject skillBlock;
     public GameObject[] skills;
 
-    int upCounter = 50;
+    public int upCounter = 50;
 
     public bool pause = false;
     public bool stats = false;
@@ -45,6 +45,7 @@ public class levelMaster : MonoBehaviour {
     int engTemp = 0;
 
     public Text[] txtStats;
+    public Text[] txtStatsTemp;
 
     public GameObject[] enemies;
     public double[] spawnTimes;
@@ -64,7 +65,7 @@ public class levelMaster : MonoBehaviour {
             spawnTimes[x] = enemies[x].GetComponent<enemyBase>().spawnTimer;
         }
         //spawnTimes[0] = enemies[0].GetComponent<enemyBase>().spawnTimer;
-
+        globalData.theLevelMaster = gameObject.GetComponent<levelMaster>();
         player = GameObject.FindWithTag("Player").GetComponent<playerScript>();
         globalData.leftEdge = GameObject.FindWithTag("leftEdge").transform.position.x + (GameObject.FindWithTag("leftEdge").transform.localScale.x / 2) + .5f;
         globalData.rightEdge = GameObject.FindWithTag("rightEdge").transform.position.x - (GameObject.FindWithTag("rightEdge").transform.localScale.x / 2) - .5f;
@@ -230,8 +231,21 @@ public class levelMaster : MonoBehaviour {
         txtStats[9].text = player.energyDamage.ToString();
         txtStats[10].text = player.maxHealth.ToString();
         txtStats[11].text = player.maxEnergy.ToString();
-         
-        
+
+        txtStatsTemp[0].text = "+ " + (strTemp * 7).ToString();
+        txtStatsTemp[1].text = "+ " +  ((float)(agiTemp * .1)).ToString();
+        txtStatsTemp[2].text = "+ " +  ((float)(agiTemp * .7)).ToString();
+        txtStatsTemp[3].text = "+ " +  ((strTemp * 2) + (conTemp * 10)).ToString();
+        txtStatsTemp[4].text = "+ " +  ((float)(strTemp * .03)).ToString();
+        txtStatsTemp[5].text = "0";
+        txtStatsTemp[6].text = "+ " +  (lukTemp * .5f).ToString();
+        txtStatsTemp[7].text = "+ " +  ((float)(strTemp * .03) + (lukTemp * .07f)).ToString();
+        txtStatsTemp[8].text = "+ " +  ((float)(agiTemp * .1) + (lukTemp * .3f)).ToString();
+        txtStatsTemp[9].text = "+ " +  (engTemp * 3).ToString();
+        txtStatsTemp[10].text = "+ " +  (conTemp * 20).ToString();
+        txtStatsTemp[11].text = "+ " +  (engTemp * 15).ToString();
+
+
         allotStats[5].text = "Points: " + player.statPoints;
         allotStats[0].text = strTemp.ToString();
         allotStats[6].text = player.str.ToString();
@@ -272,6 +286,10 @@ public class levelMaster : MonoBehaviour {
         skillMenu.SetActive(skillOpen);
     }
 
+    public void Save()
+    {
+        globalData.theSerializer.Save();
+    }        
 
     public void StrUp()
     {
@@ -406,7 +424,7 @@ public class levelMaster : MonoBehaviour {
             allotStats[3].text = engTemp.ToString();
             if (engTemp == 0)
             {
-                allotStats[4].color = Color.black;
+                allotStats[3].color = Color.black;
             }
         }
     }

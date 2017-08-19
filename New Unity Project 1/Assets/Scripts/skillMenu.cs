@@ -104,6 +104,8 @@ public class skillMenu : MonoBehaviour {
         UpdateSkillMenu();
     }
 
+    
+
     public void UpdateSkillMenu()
     {
         player.UpdateSkillValues();
