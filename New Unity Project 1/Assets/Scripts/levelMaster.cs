@@ -67,6 +67,7 @@ public class levelMaster : MonoBehaviour {
         //spawnTimes[0] = enemies[0].GetComponent<enemyBase>().spawnTimer;
         globalData.theLevelMaster = gameObject.GetComponent<levelMaster>();
         player = GameObject.FindWithTag("Player").GetComponent<playerScript>();
+        globalData.theSerializer.LoadLevelData();
         globalData.leftEdge = GameObject.FindWithTag("leftEdge").transform.position.x + (GameObject.FindWithTag("leftEdge").transform.localScale.x / 2) + .5f;
         globalData.rightEdge = GameObject.FindWithTag("rightEdge").transform.position.x - (GameObject.FindWithTag("rightEdge").transform.localScale.x / 2) - .5f;
 

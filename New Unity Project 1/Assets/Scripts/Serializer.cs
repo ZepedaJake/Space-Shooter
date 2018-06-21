@@ -177,4 +177,20 @@ public class Serializer : MonoBehaviour {
                 break;
         }
     }
+
+    public void LoadLevelData()
+    {
+        fileName = Path.Combine(saveData, "player.json");
+        loadFile = File.ReadAllText(fileName);
+
+        playerSaveData load = JsonUtility.FromJson<playerSaveData>(loadFile);
+
+        globalData.theLevelMaster.bossSpawnCounter = load.killsTillNextBoss;
+        globalData.theLevelMaster.bossCounter = load.bossCounter;
+        globalData.theLevelMaster.money = load.money;
+        globalData.theLevelMaster.kills = load.kills;
+        globalData.theLevelMaster.upCounter = load.upCounter;
+        globalData.theLevelMaster.difficulty = load.difficulty;
+
+    }
 }
